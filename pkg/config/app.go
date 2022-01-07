@@ -1,5 +1,7 @@
 package config
 
+// this file returns variable db
+
 import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -11,7 +13,7 @@ var (
 )
 
 func Connect() {
-	// username:password:tablename
+	// this enables you to connect with database: username:password:tablename
 	d, err := gorm.Open("mysql", "root:Yutagenta55@(localhost:3306)/bookinfo?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		panic(err)
