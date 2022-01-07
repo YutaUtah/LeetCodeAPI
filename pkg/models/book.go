@@ -17,16 +17,21 @@ type Book struct {
 func init() {
 	config.Connect()
 	db = config.GetDB()
+	// automigrate empty book
 	db.AutoMigrate(&Book{})
 }
 
+// functions to communicate with database
+
 func (b *Book) CreateBook() *Book {
+	// gorm function
 	db.NewRecord(b)
 	db.Create(&b)
 	return b
 }
 
 func GetAllBooks() []Book {
+	// slice of Book struct
 	var Books []Book
 	db.Find(&Books)
 	return Books
