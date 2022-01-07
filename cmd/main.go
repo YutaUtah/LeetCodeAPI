@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/YutaUtah/RESTAPIBook/pkg/routes"
+	"github.com/YutaUtah/LeetCodeAPI/pkg/routes"
 	"github.com/gorilla/mux"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
