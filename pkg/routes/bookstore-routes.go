@@ -9,9 +9,9 @@ import (
 // for example, when someone hits /book/ is hit, trigger controllers.CreateBook is executed
 // https://pkg.go.dev/github.com/gorilla/mux@v1.8.0#Router.HandleFunc
 var RegisterBookStoreRoutes = func(router *mux.Router) {
-	router.HandleFunc("/book/", controllers.CreateBook).Methods("POST")
-	router.HandleFunc("/book/", controllers.GetBook).Methods("GET")
-	router.HandleFunc("/book/{bookId}", controllers.GetBookById).Methods("GET")
-	router.HandleFunc("/book/{bookId}", controllers.UpdateBook).Methods("PUT")
-	router.HandleFunc("/book/{bookId}", controllers.DeleteBook).Methods("DELETE")
+	router.HandleFunc("/problem/", controllers.CreateProblem).Methods("POST")
+	router.HandleFunc("/problem/", controllers.GetProblem).Methods("GET")
+	router.HandleFunc("/problem/{Id}", controllers.GetProblemById).Methods("GET")
+	router.HandleFunc("/problem/{Id}", controllers.UpdateProblem).Methods("PUT")
+	router.HandleFunc("/problem/{Id}", controllers.DeleteProblem).Methods("DELETE")
 }
