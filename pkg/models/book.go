@@ -7,7 +7,7 @@ import (
 
 var db *gorm.DB
 
-type Book struct {
+type Problem struct {
 	gorm.Model
 	Name        string `gorm:""json:"name"`
 	Author      string `json:"author"`
@@ -18,33 +18,33 @@ func init() {
 	config.Connect()
 	db = config.GetDB()
 	// automigrate empty book
-	db.AutoMigrate(&Book{})
+	db.AutoMigrate(&Problem{})
 }
 
 // functions to communicate with database
 
-func (b *Book) CreateBook() *Book {
+func (b *Problem) CreateProblem() *Problem {
 	// gorm function
 	db.NewRecord(b)
 	db.Create(&b)
 	return b
 }
 
-func GetAllBooks() []Book {
+func GetAllProblems() []Problem {
 	// slice of Book struct
-	var Books []Book
-	db.Find(&Books)
-	return Books
+	var Problems []Problem
+	db.Find(&Problems)
+	return Problems
 }
 
-func GetBookById(Id int64) (*Book, *gorm.DB) {
-	var getBook Book
-	db := db.Where("ID=?", Id).Find(&getBook)
-	return &getBook, db
+func GetProblemById(Id int64) (*Problem, *gorm.DB) {
+	var getProblem Problem
+	db := db.Where("ID=?", Id).Find(&getProblem)
+	return &getProblem, db
 }
 
-func DeleteBook(ID int64) Book {
-	var book Book
-	db.Where("ID=?", ID).Delete(book)
-	return book
+func DeleteProblem(ID int64) Problem {
+	var problem Problem
+	db.Where("ID=?", ID).Delete(problem)
+	return problem
 }
