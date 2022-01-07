@@ -11,79 +11,79 @@ import (
 	"github.com/gorilla/mux"
 )
 
-var NewBook models.Book
+var newProblems models.Problem
 
-func GetBook(w http.ResponseWriter, r *http.Request) {
+func GetProblem(w http.ResponseWriter, r *http.Request) {
 	// store all books info to newBooks and send it back to the user
-	newBooks := models.GetAllBooks()
+	newProblems := models.GetAllProblems()
 	// convert newBooks to json object
-	res, _ := json.Marshal(newBooks)
+	res, _ := json.Marshal(newProblems)
 	w.Header().Set("Content-Type", "pkglication/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
 }
 
-func GetBookById(w http.ResponseWriter, r *http.Request) {
+func GetProblemById(w http.ResponseWriter, r *http.Request) {
 	// get bars (json object)
 	vars := mux.Vars(r)
 	// get bookId by acccessing bookId attribute
-	bookId := vars["bookId"]
-	ID, err := strconv.ParseInt(bookId, 0, 0)
+	problemId := vars["problemId"]
+	ID, err := strconv.ParseInt(problemId, 0, 0)
 	if err != nil {
 		fmt.Println("error while parsing")
 	}
-	bookDetails, _ := models.GetBookById(ID)
-	res, _ := json.Marshal(bookDetails)
+	problemDetails, _ := models.GetProblemById(ID)
+	res, _ := json.Marshal(problemDetails)
 	w.Header().Set("Content-Type", "pkglication/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
 }
 
-func CreateBook(w http.ResponseWriter, r *http.Request) {
-	CreateBook := &models.Book{}
-	utils.ParseBody(r, CreateBook)
-	b := CreateBook.CreateBook()
+func CreateProblem(w http.ResponseWriter, r *http.Request) {
+	CreateProblem := &models.Problem{}
+	utils.ParseBody(r, CreateProblem)
+	b := CreateProblem.CreateProblem()
 	res, _ := json.Marshal(b)
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
 }
 
-func DeleteBook(w http.ResponseWriter, r *http.Request) {
+func DeleteProblem(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	bookId := vars["bookId"]
-	ID, err := strconv.ParseInt(bookId, 0, 0)
+	problemId := vars["problemId"]
+	ID, err := strconv.ParseInt(problemId, 0, 0)
 	if err != nil {
 		fmt.Println("error while parsing")
 	}
-	book := models.DeleteBook(ID)
-	res, _ := json.Marshal(book)
+	problem := models.DeleteProblem(ID)
+	res, _ := json.Marshal(problem)
 	w.Header().Set("Content-Type", "pkglication/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
 }
 
-func UpdateBook(w http.ResponseWriter, r *http.Request) {
-	var updateBook = &models.Book{}
-	utils.ParseBody(r, UpdateBook)
+func UpdateProblem(w http.ResponseWriter, r *http.Request) {
+	var updateProblem = &models.Problem{}
+	utils.ParseBody(r, updateProblem)
 	vars := mux.Vars(r)
-	bookId := vars["bookId"]
-	ID, err := strconv.ParseInt(bookId, 0, 0)
+	problemId := vars["problemId"]
+	ID, err := strconv.ParseInt(problemId, 0, 0)
 	if err != nil {
 		fmt.Println("error while parsing")
 	}
-	bookDetails, db := models.GetBookById(ID)
-	if updateBook.Name != "" {
-		bookDetails.Name = updateBook.Name
+	problemDetails, db := models.GetProblemById(ID)
+	if updateProblem.Name != "" {
+		problemDetails.Name = updateProblem.Name
 	}
-	if updateBook.Author != "" {
-		bookDetails.Author = updateBook.Author
+	if updateProblem.Author != "" {
+		problemDetails.Author = updateProblem.Author
 	}
-	if updateBook.Publication != "" {
-		bookDetails.Publication = updateBook.Publication
+	if updateProblem.Publication != "" {
+		problemDetails.Publication = updateProblem.Publication
 	}
 	// saving book details in database
-	db.Save(&bookDetails)
-	res, _ := json.Marshal(bookDetails)
+	db.Save(&problemDetails)
+	res, _ := json.Marshal(problemDetails)
 	w.Header().Set("Content-type", "pkglication/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
