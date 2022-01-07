@@ -14,7 +14,9 @@ import (
 var NewBook models.Book
 
 func GetBook(w http.ResponseWriter, r *http.Request) {
+	// store all books info to newBooks and send it back to the user
 	newBooks := models.GetAllBooks()
+	// convert newBooks to json object
 	res, _ := json.Marshal(newBooks)
 	w.Header().Set("Content-Type", "pkglication/json")
 	w.WriteHeader(http.StatusOK)
@@ -22,7 +24,9 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetBookById(w http.ResponseWriter, r *http.Request) {
+	// get bars (json object)
 	vars := mux.Vars(r)
+	// get bookId by acccessing bookId attribute
 	bookId := vars["bookId"]
 	ID, err := strconv.ParseInt(bookId, 0, 0)
 	if err != nil {
