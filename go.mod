@@ -1,4 +1,4 @@
-module github.com/YutaUtah/RESTAPIBook
+module github.com/YutaUtah/LeetCodeAPI
 
 go 1.17
 
