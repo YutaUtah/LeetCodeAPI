@@ -6,17 +6,17 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/YutaUtah/RESTAPIBook/pkg/models"
-	"github.com/YutaUtah/RESTAPIBook/pkg/utils"
+	"github.com/YutaUtah/LeetCodeAPI/pkg/models"
+	"github.com/YutaUtah/LeetCodeAPI/pkg/utils"
 	"github.com/gorilla/mux"
 )
 
 var newProblems models.Problem
 
 func GetProblem(w http.ResponseWriter, r *http.Request) {
-	// store all books info to newBooks and send it back to the user
+	// store all problems info to newProblems and send it back to the user
 	newProblems := models.GetAllProblems()
-	// convert newBooks to json object
+	// convert newProblems to json object
 	res, _ := json.Marshal(newProblems)
 	w.Header().Set("Content-Type", "pkglication/json")
 	w.WriteHeader(http.StatusOK)
@@ -26,7 +26,7 @@ func GetProblem(w http.ResponseWriter, r *http.Request) {
 func GetProblemById(w http.ResponseWriter, r *http.Request) {
 	// get bars (json object)
 	vars := mux.Vars(r)
-	// get bookId by acccessing bookId attribute
+	// get problemId by acccessing problemId attribute
 	problemId := vars["problemId"]
 	ID, err := strconv.ParseInt(problemId, 0, 0)
 	if err != nil {
@@ -81,7 +81,7 @@ func UpdateProblem(w http.ResponseWriter, r *http.Request) {
 	if updateProblem.Publication != "" {
 		problemDetails.Publication = updateProblem.Publication
 	}
-	// saving book details in database
+	// saving problem details in database
 	db.Save(&problemDetails)
 	res, _ := json.Marshal(problemDetails)
 	w.Header().Set("Content-type", "pkglication/json")

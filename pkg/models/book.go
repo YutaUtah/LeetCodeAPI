@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/YutaUtah/RESTAPIBook/pkg/config"
+	"github.com/YutaUtah/LeetCodeAPI/pkg/config"
 	"github.com/jinzhu/gorm"
 )
 
@@ -17,7 +17,7 @@ type Problem struct {
 func init() {
 	config.Connect()
 	db = config.GetDB()
-	// automigrate empty book
+	// automigrate empty problem
 	db.AutoMigrate(&Problem{})
 }
 
@@ -31,7 +31,7 @@ func (b *Problem) CreateProblem() *Problem {
 }
 
 func GetAllProblems() []Problem {
-	// slice of Book struct
+	// slice of Problem struct
 	var Problems []Problem
 	db.Find(&Problems)
 	return Problems

@@ -2,7 +2,7 @@ package routes
 
 // user will hit when front-end is triggered
 import (
-	"github.com/YutaUtah/RESTAPIBook/pkg/controllers"
+	"github.com/YutaUtah/LeetCodeAPI/pkg/controllers"
 	"github.com/gorilla/mux"
 )
 
