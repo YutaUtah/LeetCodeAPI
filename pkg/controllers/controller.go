@@ -11,8 +11,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// var newProblems models.Problem
-
 func GetProblem(w http.ResponseWriter, r *http.Request) {
 	// store all problems info to newProblems and send it back to the user
 	newProblems := models.GetAllProblems()
@@ -81,6 +79,7 @@ func UpdateProblem(w http.ResponseWriter, r *http.Request) {
 	if updateProblem.Difficulty != "" {
 		problemDetails.Difficulty = updateProblem.Difficulty
 	}
+
 	// saving problem details in database
 	db.Save(&problemDetails)
 	res, _ := json.Marshal(problemDetails)
