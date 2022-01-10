@@ -3,6 +3,8 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -86,4 +88,15 @@ func UpdateProblem(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "pkglication/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
+}
+
+func Hello(w http.ResponseWriter, r *http.Request) {
+	tf, er := template.ParseFiles("../templates/hello.html")
+	if er != nil {
+		tf, _ = template.New("index").Parse("<html><body><h1>NO TEMPLATE.</h1></body></html>")
+	}
+	er = tf.Execute(w, nil)
+	if er != nil {
+		log.Fatal(er)
+	}
 }
