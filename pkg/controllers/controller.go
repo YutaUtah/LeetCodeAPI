@@ -90,8 +90,8 @@ func UpdateProblem(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
-func Hello(w http.ResponseWriter, r *http.Request) {
-	tf, er := template.ParseFiles("../templates/hello.html")
+func DisplayProblems(w http.ResponseWriter, r *http.Request) {
+	tf, er := template.ParseFiles("../templates/index.html")
 	if er != nil {
 		tf, _ = template.New("index").Parse("<html><body><h1>NO TEMPLATE.</h1></body></html>")
 	}
