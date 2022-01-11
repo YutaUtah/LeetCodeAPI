@@ -14,5 +14,5 @@ var RegisterBookStoreRoutes = func(router *mux.Router) {
 	router.HandleFunc("/problem/{Id}", controllers.GetProblemById).Methods("GET")
 	router.HandleFunc("/problem/{Id}", controllers.UpdateProblem).Methods("PUT")
 	router.HandleFunc("/problem/{Id}", controllers.DeleteProblem).Methods("DELETE")
-	router.HandleFunc("/hello/", controllers.Hello)
+	router.HandleFunc("/", controllers.DisplayProblems)
 }
