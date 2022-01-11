@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LeetCode History</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h1>LeetCode History</h1>
+      <div id="problems"></div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      var update = function(){
+        $.get("http://localhost:9000/problems/", null, null, "json")
+          .done(function(problems){
+            $("#problems").empty();
+            var table_body = '<table border="2" style="width:100%">';
+            table_body += "<tr> <td>Date</td> <td>Title</td> <td>number</td> <td>difficulty</td> </tr>"
+            for (var p in problems) {
+                var problem = problems[p];
+                table_body+='<tr>';
+                table_body += '<td>' + problem.UpdatedAt.split("T", 1) + '</td>';
+                table_body += '<td>' + problem.title + '</td>';
+                table_body += '<td>' + problem.number + '</td>';
+                table_body += '<td>' + problem.difficulty + '</td>';
+                table_body+='</tr>';
+            }
+            table_body+='</table>';
+            $('#problems').append(table_body);
+          }
+        );
+        window.setTimeout(update, 10000);
+      }
+      update();
+    });
+  </script>
+</body>
+</html>
