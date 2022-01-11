@@ -43,6 +43,23 @@ curl -i http://localhost:9000/problems/
 curl --header "Content-Type: application/json"    --request GET   http://localhost:9000/problem/{id}
 ```
 
+#### POST Request problem by ID:
+
+```
+curl --header "Content-Type: application/json"    --request POST   http://localhost:9000/problem/
+```
+
+#### DELETE Request problem by ID:
+
+```
+curl --header "Content-Type: application/json"    --request DEKETE   http://localhost:9000/problem/{id}
+```
+
+## Visualizer:
+
+```http://localhost:{portid}}/``` will take you to the table with the history of leetcode problems you solved.
+
+
 ### Database:
 
 - MySQL, all my config is stored in config directory - app.go
