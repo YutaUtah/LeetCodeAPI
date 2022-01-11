@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"net/http"
 
@@ -11,11 +12,11 @@ import (
 
 func main() {
 	// initialize router
+	var addr = flag.String("addr", ":9000", "endpoint address")
 	r := mux.NewRouter()
 	// function with multiple routing options
 	routes.RegisterBookStoreRoutes(r)
 	http.Handle("/", r)
-	// check this later help us create server in the first place
-	// if there is error print
+	log.Println("Starting web server on", *addr)
 	log.Fatal(http.ListenAndServe("localhost:9000", r))
 }
