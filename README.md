@@ -2,6 +2,8 @@
 
 This project is initiated to learn more about RESTful API and programming language Go. At the same time, I want to keep track of my leetcode change record by rendering data in simple html file.
 
+For the database, I am using MySQL in this project.
+
 ### How to send GET Request:
 
 ##### GET Request all problems:
