@@ -81,7 +81,12 @@ func UpdateProblem(w http.ResponseWriter, r *http.Request) {
 	if updateProblem.Difficulty != "" {
 		problemDetails.Difficulty = updateProblem.Difficulty
 	}
-
+	if updateProblem.Comment != "" {
+		problemDetails.Comment = updateProblem.Comment
+	}
+	if updateProblem.Date.String() != "" {
+		problemDetails.Date = updateProblem.Date
+	}
 	// saving problem details in database
 	db.Save(&problemDetails)
 	res, _ := json.Marshal(problemDetails)
