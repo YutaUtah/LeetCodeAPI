@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/YutaUtah/LeetCodeAPI/pkg/config"
@@ -14,7 +15,8 @@ type Problem struct {
 	Number     int    `gorm:"" json:"number"`
 	Title      string `json:"title"`
 	Difficulty string `json:"difficulty"`
-	FinishedDT *Date  `json:"date"`
+	Comment    string `json:"comment"`
+	Date       *Date  `json:"date"sql:"not null;type:date"`
 }
 
 type Date struct {
@@ -22,8 +24,8 @@ type Date struct {
 }
 
 // custom UnmarshalJSON to specify the date format for FinishedDT
-func (d *Date) UnmarshalJSON(b []byte) error {
-	v, err := time.Parse(`"2006-01-02"`, string(b))
+func (d *Date) UnmarshalJSON(body []byte) error {
+	v, err := time.Parse(`"2006-01-02"`, string(body))
 	if err != nil {
 		return err
 	}
@@ -39,10 +41,10 @@ func init() {
 }
 
 // functions to communicate with database
-
 func (b *Problem) CreateProblem() *Problem {
 	// gorm function
 	db.NewRecord(b)
+	fmt.Println(*b.Date)
 	db.Create(&b)
 	return b
 }
