@@ -13,7 +13,7 @@ import (
 func main() {
 	// initialize router
 	var addr = flag.String("addr", ":9000", "endpoint address")
-	r := mux.NewRouter()
+	r := mux.NewRouter().StrictSlash(true)
 	// function with multiple routing options
 	routes.RegisterBookStoreRoutes(r)
 	http.Handle("/", r)
