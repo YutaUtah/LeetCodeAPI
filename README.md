@@ -17,7 +17,8 @@ record = {
             "number": 122,
             "title": "String Manupulation",
             "difficulty": "easy",
-            "date": "2022-01-10"
+            "date": "2022-01-10",
+            "comment": "It was so easy!"
         }
 ```
 
@@ -26,6 +27,7 @@ record = {
 - **title**: This is a problem title that you can see in leetcode website
 - **difficulty**: This represents problem level. (Easy, Medium, Hard)
 - **date**: This is a date of my problem completion
+- **comment**: Any comments on this problem
 
 
 
