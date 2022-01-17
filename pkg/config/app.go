@@ -6,11 +6,29 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-// todo: this can be written in a different way
+// App config
+type App struct {
+	Router     *mux.Router
+	PathPrefix string
+}
+
+func (a *App) Getrouter() *mux.Router {
+	if a.Router == nil {
+		a.Router = mux.NewRouter().StrictSlash(true)
+	}
+	return a.Router
+}
+
+func (a *App) GetSubrouter(PathPrefix string) *mux.Router {
+	return a.Getrouter().PathPrefix(a.PathPrefix).Subrouter()
+}
+
+// db config
 var (
 	db *gorm.DB
 )
