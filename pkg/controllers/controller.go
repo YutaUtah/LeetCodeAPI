@@ -17,7 +17,10 @@ func GetProblem(w http.ResponseWriter, r *http.Request) {
 	// store all problems info to newProblems and send it back to the user
 	newProblems := models.GetAllProblems()
 	// convert newProblems to json object
-	res, _ := json.Marshal(newProblems)
+	res, err := json.Marshal(newProblems)
+	if err != nil {
+		log.Fatal(err, "json unable to Marshal in getProblem func")
+	}
 	w.Header().Set("Content-Type", "pkglication/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
@@ -30,10 +33,13 @@ func GetProblemById(w http.ResponseWriter, r *http.Request) {
 	problemId := vars["Id"]
 	ID, err := strconv.ParseInt(problemId, 0, 0)
 	if err != nil {
-		fmt.Println("error while parsing")
+		log.Fatal(err, "error while parsing")
 	}
 	problemDetails, _ := models.GetProblemById(ID)
-	res, _ := json.Marshal(problemDetails)
+	res, err := json.Marshal(problemDetails)
+	if err != nil {
+		log.Fatal(err, "json unable to Marshal in GetProblemById func")
+	}
 	w.Header().Set("Content-Type", "pkglication/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
@@ -43,7 +49,10 @@ func CreateProblem(w http.ResponseWriter, r *http.Request) {
 	CreateProblem := &models.Problem{}
 	utils.ParseBody(r, CreateProblem)
 	b := CreateProblem.CreateProblem()
-	res, _ := json.Marshal(b)
+	res, err := json.Marshal(b)
+	if err != nil {
+		log.Fatal(err, "json unable to Marshal in CreateProblem func")
+	}
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
 }
@@ -56,7 +65,10 @@ func DeleteProblem(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error while parsing")
 	}
 	problem := models.DeleteProblem(ID)
-	res, _ := json.Marshal(problem)
+	res, err := json.Marshal(problem)
+	if err != nil {
+		log.Fatal(err, "json unable to Marshal in DeleteProblem func")
+	}
 	w.Header().Set("Content-Type", "pkglication/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
@@ -89,7 +101,10 @@ func UpdateProblem(w http.ResponseWriter, r *http.Request) {
 	}
 	// saving problem details in database
 	db.Save(&problemDetails)
-	res, _ := json.Marshal(problemDetails)
+	res, err := json.Marshal(problemDetails)
+	if err != nil {
+		log.Fatal(err, "json unable to Marshal in UpdateProblem func")
+	}
 	w.Header().Set("Content-type", "pkglication/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
