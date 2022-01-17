@@ -34,25 +34,25 @@ record = {
 #### GET Request all problems:
 
 ```
-curl -i http://localhost:9000/problems/
+curl -i http://localhost:9000/api/v1/problems/
 ```
 
 #### GET Request problem by ID:
 
 ```
-curl --header "Content-Type: application/json"    --request GET   http://localhost:9000/problem/{id}
+curl --header "Content-Type: application/json"    --request GET   http://localhost:9000/api/v1/problems/{id}
 ```
 
 #### POST Request problem by ID:
 
 ```
-curl --header "Content-Type: application/json"    --request POST   http://localhost:9000/problem/
+curl --header "Content-Type: application/json"    --request POST   http://localhost:9000/api/v1/problems/
 ```
 
 #### DELETE Request problem by ID:
 
 ```
-curl --header "Content-Type: application/json"    --request DEKETE   http://localhost:9000/problem/{id}
+curl --header "Content-Type: application/json"    --request DEKETE   http://localhost:9000/api/v1/problems/{id}
 ```
 
 ## Visualizer:
