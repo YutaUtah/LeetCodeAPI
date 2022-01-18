@@ -111,12 +111,13 @@ func UpdateProblem(w http.ResponseWriter, r *http.Request) {
 }
 
 func DisplayProblems(w http.ResponseWriter, r *http.Request) {
-	tf, er := template.ParseFiles("../templates/index.html")
-	if er != nil {
-		tf, _ = template.New("index").Parse("<html><body><h1>NO TEMPLATE.</h1></body></html>")
+
+	tf, err := template.ParseFiles("../templates/index.html")
+	if err != nil {
+		tf, _ = template.New("index").Parse(`<html><body><h1>NO TEMPLATE.</h1></body></html>`)
 	}
-	er = tf.Execute(w, nil)
-	if er != nil {
-		log.Fatal(er)
+	err = tf.Execute(w, nil)
+	if err != nil {
+		log.Fatal(err)
 	}
 }
