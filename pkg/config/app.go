@@ -25,7 +25,7 @@ func (a *App) Getrouter() *mux.Router {
 }
 
 func (a *App) GetSubrouter(PathPrefix string) *mux.Router {
-	return a.Getrouter().PathPrefix(a.PathPrefix).Subrouter()
+	return a.Getrouter().PathPrefix(PathPrefix).Subrouter()
 }
 
 // db config
