@@ -59,27 +59,30 @@ curl --header "Content-Type: application/json"    --request DEKETE   http://loca
 
 ## Visualizer:
 
-```http://localhost:{portid}}/``` will take you to the table with the history of leetcode problems you solved.
+```http://localhost:9000/api/v1/about``` will take you to the table with the history of leetcode problems you solved.
+
+![about page](img/about.png)
 
 
 ### Database:
 
 - MySQL, all my config is stored in config directory - app.go
 
+
 ## Local Setup for Development:
 
-### clone the repo locally
+#### clone the repo locally
 
 ```
 git clone https://github.com/YutaUtah/LeetCodeAPI.git
 ```
 
-### Download the required Go modules
+#### Download the required Go modules
 ```
 go mod download
 ```
 
-### Run the server
+#### Run the server
 ```
 cd cmd
 go run main.go
