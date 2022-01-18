@@ -14,5 +14,5 @@ var RegisterLeetCodeRoutes = func(router *mux.Router) {
 	router.HandleFunc("/problems/{Id}", controllers.GetProblemById).Methods("GET")
 	router.HandleFunc("/problems/{Id}", controllers.UpdateProblem).Methods("PUT")
 	router.HandleFunc("/problems/{Id}", controllers.DeleteProblem).Methods("DELETE")
-	router.HandleFunc("/", controllers.DisplayProblems)
+	router.HandleFunc("/about", controllers.DisplayProblems)
 }
