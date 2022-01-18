@@ -17,7 +17,7 @@
   <script>
     $(function(){
       var update = function(){
-        $.get("http://localhost:9000/problems/", null, null, "json")
+        $.get("http://localhost:9000/api/v1/problems/", null, null, "json")
           .done(function(problems){
             $("#problems").empty();
             var table_body = '<table border="2" style="width:100%">';
